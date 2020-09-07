@@ -27,7 +27,7 @@ public class SpringBootDockerApplication {
 		
 		
 		
-;		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database West EU of record inserted: " + inserted;
+;		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database North EU of record inserted: " + inserted;
 	}
 	
 	
