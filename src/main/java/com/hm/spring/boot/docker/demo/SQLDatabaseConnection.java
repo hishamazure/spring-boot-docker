@@ -14,7 +14,7 @@ public class SQLDatabaseConnection {
 
         
         String connectionUrl =
-        "jdbc:sqlserver://sql-hisham.database.windows.net:1433;"
+        "jdbc:sqlserver://sql-hisham2.database.windows.net:1433;"
         + "database=db-hm;"
         + "user=sqladmin@sql-hisham2;password=hisham@1234;"
         + "encrypt=true;"
