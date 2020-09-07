@@ -1,5 +1,7 @@
  package com.hm.spring.boot.docker.demo;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +22,12 @@ public class SpringBootDockerApplication {
 	
 
 	@GetMapping("/insert")
-	public String insert() {
+	public String insert(HttpServletRequest request) {
 		String inserted = (new SQLDatabaseConnection()).insertReord();
-;		return "ID of record inserted: " + inserted;
+		
+		
+		
+;		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database West EU of record inserted: " + inserted;
 	}
 	
 	
