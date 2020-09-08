@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @SpringBootApplication
 @RestController
 public class SpringBootDockerApplication {
@@ -25,9 +26,11 @@ public class SpringBootDockerApplication {
 	public String insert(HttpServletRequest request) {
 		String inserted = (new SQLDatabaseConnection()).insertReord();
 		
+		String REGION_NAME = System.getProperty("REGION_NAME") ;
+		System.out.println(REGION_NAME);
 		
 		
-;		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database North EU ABC of record inserted: " + inserted;
+;		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database North EU ("+REGION_NAME+") of record inserted: " + inserted;
 	}
 	
 	
