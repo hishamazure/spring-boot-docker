@@ -1,5 +1,7 @@
  package com.hm.spring.boot.docker.demo;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.SpringApplication;
@@ -26,11 +28,17 @@ public class SpringBootDockerApplication {
 	public String insert(HttpServletRequest request) {
 		String inserted = (new SQLDatabaseConnection()).insertReord();
 		
-		String REGION_NAME = System.getProperty("REGION_NAME") ;
-		System.out.println(REGION_NAME);
+		Map<String, String> env = System.getenv();
+        // Java 8
+        //env.forEach((k, v) -> System.out.println(k + ":" + v));
+
+        // Classic way to loop a map
+        for (Map.Entry<String, String> entry : env.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
 		
 		
-;		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database North EU ("+REGION_NAME+") of record inserted: " + inserted;
+;		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database North EU of record inserted: " + inserted;
 	}
 	
 	
