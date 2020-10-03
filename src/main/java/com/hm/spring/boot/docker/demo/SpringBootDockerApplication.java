@@ -43,7 +43,7 @@ public class SpringBootDockerApplication {
 
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		
 		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database. Number of records inserted: " + inserted;
