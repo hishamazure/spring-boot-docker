@@ -41,6 +41,7 @@ public class SQLDatabaseConnection {
 	public String getDBConnectionString() {
 		
 		runnslookup();
+		myCommand();
 		
 		/**
 		 * The direct connection
@@ -122,6 +123,34 @@ public class SQLDatabaseConnection {
     }
     
     
+    public void myCommand() 
+    {
+    	
+    	System.out.println("----START-------");
+    	Process process = null;
+             try
+             { 
+             process = Runtime.getRuntime().exec("pwd"); // for Linux
+             //Process process = Runtime.getRuntime().exec("cmd /c dir"); //for Windows
+
+             process.waitFor();
+             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+             String line;
+                while ((line=reader.readLine())!=null)
+                {
+                 System.out.println(line);   
+                 }
+              }       
+                 catch(Exception e)
+              { 
+                  System.out.println(e); 
+              }
+              finally
+              {
+                process.destroy();
+                System.out.println("----END-------");
+              }  
+     }
     
     public static void runnslookup() {
 		ProcessBuilder processBuilder = new ProcessBuilder();
@@ -129,7 +158,7 @@ public class SQLDatabaseConnection {
 		// -- Linux --
 
 		// Run a shell command
-		processBuilder.command("bash", "-c", "nslookup failover-hisham1.database.windows.net");
+		processBuilder.command("nslookup failover-hisham1.database.windows.net");
 
 
 
