@@ -42,7 +42,7 @@ public class SQLDatabaseConnection {
 	
 	public String getDBConnectionString() {
 		
-		NsLookup.resolve(FAILOVER_GROUP_NAME+"database.windows.net");
+		NsLookup.resolve(FAILOVER_GROUP_NAME+".database.windows.net");
 		
 		/**
 		 * The direct connection
