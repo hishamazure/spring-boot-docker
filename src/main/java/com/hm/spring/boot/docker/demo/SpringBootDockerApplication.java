@@ -45,6 +45,7 @@ public class SpringBootDockerApplication {
 	@RequestMapping(value="user", method = RequestMethod.GET)
 	public @ResponseBody String getItem(@RequestParam("data") String itemid){
 		//access the URL :http://51.138.69.66:8080/user?data=1
+		//http://52.157.222.96:8080/user?data=1
 	    
 	    return "The value entered is " + itemid;
 	}
