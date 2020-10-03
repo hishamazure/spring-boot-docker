@@ -117,7 +117,8 @@ public class SQLDatabaseConnection {
         }
         // Handle any errors that may have occurred.
         catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+        	System.out.println(e.getMessage());
             return e.getMessage();
             
         }
