@@ -50,7 +50,7 @@ public class SQLDatabaseConnection {
 		
 		
 		String dbName = "db-hm";
-		String username = "sqladmin@sql-hisham2";//@
+		String username = "sqladmin@sqlserver-hisham1";//@
 		String password = "hisham@1234";
 		
 		
