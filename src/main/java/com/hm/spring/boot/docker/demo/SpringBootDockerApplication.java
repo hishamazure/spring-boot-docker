@@ -1,5 +1,8 @@
  package com.hm.spring.boot.docker.demo;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,12 +36,16 @@ public class SpringBootDockerApplication {
         //env.forEach((k, v) -> System.out.println(k + ":" + v));
 
         // Classic way to loop a map
-        for (Map.Entry<String, String> entry : env.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
-        }
+        //for (Map.Entry<String, String> entry : env.entrySet()) {
+           // System.out.println(entry.getKey() + " : " + entry.getValue());
+        //}
 		
 		
-;		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database North EU of record inserted: " + inserted;
+		System.out.println("Env Variable (Location) " +env.get("Location"));
+		
+		
+		
+		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database North EU of record inserted: " + inserted;
 	}
 	
 	
@@ -53,5 +60,7 @@ public class SpringBootDockerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootDockerApplication.class, args);
 	}
+	
+	
 
 }

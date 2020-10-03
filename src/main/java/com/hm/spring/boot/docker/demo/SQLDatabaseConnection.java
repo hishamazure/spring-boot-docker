@@ -1,5 +1,8 @@
 package com.hm.spring.boot.docker.demo;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -37,6 +40,8 @@ public class SQLDatabaseConnection {
 	
 	public String getDBConnectionString() {
 		
+		runnslookup();
+		
 		/**
 		 * The direct connection
 		 */
@@ -62,6 +67,8 @@ public class SQLDatabaseConnection {
         + "trustServerCertificate=false;"
         + "hostNameInCertificate=*.database.windows.net;"
         + "loginTimeout=30;";
+        
+        
         
         return connectionUrl;
 		
@@ -113,6 +120,47 @@ public class SQLDatabaseConnection {
         
        
     }
+    
+    
+    
+    public static void runnslookup() {
+		ProcessBuilder processBuilder = new ProcessBuilder();
+
+		// -- Linux --
+
+		// Run a shell command
+		processBuilder.command("bash", "-c", "nslookup failover-hisham1.database.windows.net");
+
+
+
+		try {
+
+			Process process = processBuilder.start();
+
+			StringBuilder output = new StringBuilder();
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+			String line;
+			while ((line = reader.readLine()) != null) {
+				output.append(line + "\n");
+			}
+
+			int exitVal = process.waitFor();
+			if (exitVal == 0) {
+				System.out.println("Success!");
+				System.out.println(output);
+				System.exit(0);
+			} else {
+				//abnormal...
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }
 
 
