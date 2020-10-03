@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import com.hm.spring.boot.util.NsLookup;
+
 public class SQLDatabaseConnection {
 	
 	
@@ -40,8 +42,7 @@ public class SQLDatabaseConnection {
 	
 	public String getDBConnectionString() {
 		
-		runnslookup();
-		myCommand();
+		NsLookup.resolve(FAILOVER_GROUP_NAME+"database.windows.net");
 		
 		/**
 		 * The direct connection
@@ -123,73 +124,7 @@ public class SQLDatabaseConnection {
     }
     
     
-    public void myCommand() 
-    {
-    	
-    	System.out.println("----START-------");
-    	Process process = null;
-             try
-             { 
-             process = Runtime.getRuntime().exec("pwd"); // for Linux
-             //Process process = Runtime.getRuntime().exec("cmd /c dir"); //for Windows
-
-             process.waitFor();
-             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-             String line;
-                while ((line=reader.readLine())!=null)
-                {
-                 System.out.println(line);   
-                 }
-              }       
-                 catch(Exception e)
-              { 
-                  System.out.println(e); 
-              }
-              finally
-              {
-                process.destroy();
-                System.out.println("----END-------");
-              }  
-     }
-    
-    public static void runnslookup() {
-		ProcessBuilder processBuilder = new ProcessBuilder();
-
-		// -- Linux --
-
-		// Run a shell command
-		processBuilder.command("nslookup failover-hisham1.database.windows.net");
-
-
-
-		try {
-
-			Process process = processBuilder.start();
-
-			StringBuilder output = new StringBuilder();
-
-			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
-			String line;
-			while ((line = reader.readLine()) != null) {
-				output.append(line + "\n");
-			}
-
-			int exitVal = process.waitFor();
-			if (exitVal == 0) {
-				System.out.println("Success!");
-				System.out.println(output);
-				System.exit(0);
-			} else {
-				//abnormal...
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+   
 }
 
 
