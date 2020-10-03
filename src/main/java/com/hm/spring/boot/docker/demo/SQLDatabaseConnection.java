@@ -49,7 +49,7 @@ public class SQLDatabaseConnection {
 		String serverNameFailover = "failover-hisham1.database.windows.net";
 		
 		
-		String dbName = "db-hm";
+		String dbName = "database-db1";
 		String username = "sqladmin@sqlserver-hisham1";//@
 		String password = "hisham@1234";
 		
