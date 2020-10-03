@@ -1,6 +1,7 @@
  package com.hm.spring.boot.docker.demo;
 
 import java.io.BufferedReader;
+import java.util.concurrent.TimeUnit;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
@@ -29,7 +30,26 @@ public class SpringBootDockerApplication {
 
 	@GetMapping("/insert")
 	public String insert(HttpServletRequest request) {
-		String inserted = (new SQLDatabaseConnection()).insertReord();
+
+		printEnv();
+
+		String inserted = "";
+		try {
+			for (int i = 1; i < 30; i++) {
+				// loop will run for about 1 hour
+
+				TimeUnit.SECONDS.sleep(1);
+				inserted = (new SQLDatabaseConnection()).insertReord();
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database. Number of records inserted: " + inserted;
+	}
+	
+	public void printEnv() {
 		
 		Map<String, String> env = System.getenv();
         // Java 8
@@ -44,10 +64,9 @@ public class SpringBootDockerApplication {
 		System.out.println("Env Variable (Location) " +env.get("Location"));
 		
 		
-		
-		return "Requirest from IP : "+request.getRemoteAddr()+". Requesting from database. Number of records inserted: " + inserted;
-	}
 	
+		
+	}
 	
 	@RequestMapping(value="user", method = RequestMethod.GET)
 	public @ResponseBody String getItem(@RequestParam("data") String itemid){
