@@ -37,7 +37,7 @@ public class SpringBootDockerApplication {
 		try {
 			for (int i = 1; i < 30; i++) {
 				// loop will run for about 1 hour
-
+				System.out.println("-----");
 				TimeUnit.SECONDS.sleep(1);
 				inserted = (new SQLDatabaseConnection()).insertReord();
 

@@ -43,7 +43,7 @@ public class SQLDatabaseConnection {
 		
 		
 		
-		System.out.println("\r\nGOING TO DB IP:");
+		//System.out.println("\r\nGOING TO DB IP:");
 		NsLookup.resolve(FAILOVER_GROUP_NAME+".database.windows.net");
 		
 		
