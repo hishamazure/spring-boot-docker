@@ -11,10 +11,7 @@ public class NsLookup {
 	    {
 	      InetAddress inetAddress = InetAddress.getByName(host);
 
-	      System.out.println("Host: " +
-	          inetAddress.getHostName());
-	      System.out.println("IP Address: " +
-	          inetAddress.getHostAddress());
+	      System.out.println("Host: " +	 inetAddress.getHostName() + "   IP Address: " +     inetAddress.getHostAddress());
 	    }
 	    catch (UnknownHostException e)
 	    {
