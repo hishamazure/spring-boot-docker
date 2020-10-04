@@ -42,8 +42,11 @@ public class SQLDatabaseConnection {
 	
 	public String getDBConnectionString() {
 		
+		java.security.Security.setProperty("networkaddress.cache.ttl" , "0");
+		
 		System.out.println("GOING TO DB IP:");
 		NsLookup.resolve(FAILOVER_GROUP_NAME+".database.windows.net");
+		
 		
 		
 		/**
