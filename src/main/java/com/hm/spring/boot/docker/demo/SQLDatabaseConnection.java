@@ -1,13 +1,12 @@
 package com.hm.spring.boot.docker.demo;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.hm.spring.boot.util.NsLookup;
 
@@ -113,8 +112,14 @@ public class SQLDatabaseConnection {
             // Print the ID of the inserted row.
             
             while (resultSet.next()) {
+            	
+            	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+            	LocalDateTime now = LocalDateTime.now();  
+            	System.out.println(dtf.format(now));
+            	
+            	
             	insertedId = resultSet.getString(1);
-                System.out.println("Generated: " + insertedId );
+                System.out.println(dtf.format(now) + ": Generated: " + insertedId );
             }
             return insertedId;
         }
